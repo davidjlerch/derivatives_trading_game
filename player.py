@@ -42,7 +42,7 @@ class Player:
         sold = 0
         for _ in range(quantity):
             for option in self.derivatives_portfolio:
-                if option.type == option_type and option.underlying_asset == asset.name and sold < quantity:
+                if option.type == option_type.lower() and option.underlying_asset == asset.name and sold < quantity:
                     self.cash += option.premium
                     self.derivatives_portfolio.remove(option)
                     sold += 1
