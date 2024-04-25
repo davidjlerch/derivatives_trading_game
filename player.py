@@ -40,11 +40,12 @@ class Player:
 
     def sell_option(self, option_type, asset, quantity):
         sold = 0
-        for option in self.derivatives_portfolio:
-            if option.type == option_type and option.underlying_asset == asset.name and sold < quantity:
-                self.cash += option.premium
-                self.derivatives_portfolio.remove(option)
-                sold += 1
+        for _ in range(quantity):
+            for option in self.derivatives_portfolio:
+                if option.type == option_type and option.underlying_asset == asset.name and sold < quantity:
+                    self.cash += option.premium
+                    self.derivatives_portfolio.remove(option)
+                    sold += 1
 
     def calculate_portfolio_value(self, assets):
         """
